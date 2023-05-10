@@ -1,7 +1,9 @@
-package com.devsuperior.dslist.dto;
+package com.devsuperior.dslist.dtos;
 
 import com.devsuperior.dslist.entities.GameList;
+import lombok.Data;
 
+@Data
 public class GameListDTO {
 
 	private Long id;
@@ -10,13 +12,5 @@ public class GameListDTO {
 	public GameListDTO(GameList entity) {
 		id = entity.getId();
 		name = entity.getName();
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getName() {
-		return name;
 	}
 }
