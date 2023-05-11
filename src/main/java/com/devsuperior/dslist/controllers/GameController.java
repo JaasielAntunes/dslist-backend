@@ -26,7 +26,7 @@ public class GameController {
 	public ResponseEntity<Object> saveGame(@RequestBody GameDTO gameDTO) {
 		var game = new Game();
 		BeanUtils.copyProperties(gameDTO, game);
-		gameService.save(game);
+		gameService.saveOrUpdate(game);
 		return ResponseEntity.status(HttpStatus.CREATED).body("Jogo cadastrado com sucesso!");
 	}
 
@@ -40,5 +40,15 @@ public class GameController {
 	public List<GameMinDTO> findAll() {
 		List<GameMinDTO> result = gameService.findAll();
 		return result;
+	}
+
+	@PutMapping("/atualizar/{id}")
+	public ResponseEntity<Object> atualizar(@PathVariable Long id, @RequestBody Game game) {
+		if(id != null) {
+			game.setId(id);
+		}
+
+		gameService.saveOrUpdate(game);
+		return ResponseEntity.status(HttpStatus.OK).body("Jogo atualizado com sucesso!");
 	}
 }

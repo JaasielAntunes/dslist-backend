@@ -20,7 +20,7 @@ public class GameService {
 	private GameRepository gameRepository;
 
 	@Transactional
-	public Game save(Game game) {
+	public Game saveOrUpdate(Game game) {
 		return gameRepository.save(game);
 	}
 	
