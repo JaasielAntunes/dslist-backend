@@ -1,6 +1,7 @@
 package com.devsuperior.dslist.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,10 @@ public class GameService {
 		Game result = gameRepository.findById(listId).get();
 		return new GameDTO(result);
 	}
+
+	public Optional<Game> optionalFindById(Long id) {
+		return gameRepository.findById(id);
+	}
 	
 	@Transactional(readOnly = true)
 	public List<GameMinDTO> findAll() {
@@ -40,5 +45,10 @@ public class GameService {
 	public List<GameMinDTO> findByGameList(Long listId) {
 		List<GameMinProjection> games = gameRepository.searchByList(listId);
 		return games.stream().map(GameMinDTO::new).toList();
+	}
+
+	@Transactional
+	public void remove(Long id) {
+		gameRepository.deleteById(id);
 	}
 }

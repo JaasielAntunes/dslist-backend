@@ -1,6 +1,7 @@
 package com.devsuperior.dslist.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.devsuperior.dslist.entities.Game;
 import lombok.RequiredArgsConstructor;
@@ -43,12 +44,25 @@ public class GameController {
 	}
 
 	@PutMapping("/atualizar/{id}")
-	public ResponseEntity<Object> atualizar(@PathVariable Long id, @RequestBody Game game) {
-		if(id != null) {
-			game.setId(id);
+	public ResponseEntity<Object> atualizar(@PathVariable(value = "id") Long id, @RequestBody Game game) {
+		Optional<Game> gameModel = gameService.optionalFindById(id);
+		if (gameModel.isEmpty()) {
+			return  ResponseEntity.status(HttpStatus.NOT_FOUND).body("O id informado não existe!"); // exibir msg no corpo
 		}
 
+		game.setId(id);
 		gameService.saveOrUpdate(game);
 		return ResponseEntity.status(HttpStatus.OK).body("Jogo atualizado com sucesso!");
+	}
+
+	@DeleteMapping("/remover/{id}")
+	public ResponseEntity remover(@PathVariable(value = "id") Long id) {
+		Optional<Game> gameModel = gameService.optionalFindById(id);
+		if (gameModel.isEmpty()) {
+			return  ResponseEntity.status(HttpStatus.NOT_FOUND).body("O id informado não existe!"); // exibir msg no corpo
+		}
+
+		gameService.remove(gameModel.get().getId());
+		return ResponseEntity.status(HttpStatus.OK).body("Jogo removido com sucesso!");
 	}
 }
