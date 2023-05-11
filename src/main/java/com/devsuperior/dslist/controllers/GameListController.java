@@ -1,24 +1,25 @@
 package com.devsuperior.dslist.controllers;
 
-import java.util.List;
-
+import com.devsuperior.dslist.dtos.GameListDTO;
+import com.devsuperior.dslist.dtos.GameMinDTO;
+import com.devsuperior.dslist.services.GameListService;
+import com.devsuperior.dslist.services.GameService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.devsuperior.dslist.dtos.GameListDTO;
-import com.devsuperior.dslist.dtos.GameMinDTO;
-import com.devsuperior.dslist.services.GameListService;
-import com.devsuperior.dslist.services.GameService;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/lists")
+@RequiredArgsConstructor
 public class GameListController {
 
 	@Autowired
-	private GameListService gameListService;
+	final GameListService gameListService;
 	
 	@Autowired
 	private GameService gameService;

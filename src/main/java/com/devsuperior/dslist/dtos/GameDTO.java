@@ -1,11 +1,15 @@
 package com.devsuperior.dslist.dtos;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.BeanUtils;
 
 import com.devsuperior.dslist.entities.Game;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class GameDTO {
 
 	private Long id;

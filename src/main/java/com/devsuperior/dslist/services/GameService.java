@@ -18,6 +18,11 @@ public class GameService {
 
 	@Autowired
 	private GameRepository gameRepository;
+
+	@Transactional
+	public Game save(Game game) {
+		return gameRepository.save(game);
+	}
 	
 	@Transactional(readOnly = true)
 	public GameDTO findById(@PathVariable Long listId) {
