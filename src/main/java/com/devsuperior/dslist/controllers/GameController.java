@@ -31,7 +31,7 @@ public class GameController {
 		return ResponseEntity.status(HttpStatus.CREATED).body("Jogo cadastrado com sucesso!");
 	}
 
-	@GetMapping(value = "/{id}")
+	@GetMapping(value = "/listar/{id}")
 	public GameDTO findById(@PathVariable Long id) {
 		GameDTO result = gameService.findById(id);
 		return result;
