@@ -41,6 +41,6 @@ cd backend
 
 # Autor:
 
-Jaasiel Antunes de araujo
+Jaasiel Antunes de Araujo
 
 https://www.linkedin.com/in/jaasiel-antunes-1517b41bb
